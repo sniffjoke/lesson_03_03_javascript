@@ -73,4 +73,72 @@
 
 // Car.compareCarSpeed(bmw, kia)
 
+// class Wallet {
+//     exchangeCof = 90
+//
+//     constructor(amount) {
+//         this.amount = amount
+//     }
+//
+//     static MoneyInUSD(amount, cof) {
+//         return amount * cof + ' USD'
+//     }
+// }
+//
+// const money = Wallet.MoneyInUSD(100, 90)
+// console.log(money)
+
+class Car {
+    #speed = 100
+
+    constructor(brand, color) {
+        this.brand = brand
+        this.color = color
+    }
+
+    startEngine() {                             // создается один раз
+        console.log(`${this.brand} started`);
+    }
+
+    #validateAsNumber(speed) {
+        if (typeof speed !== "number") {
+            throw new Error(`Invalid speed: ${speed}`);
+        }
+    }
+
+    // startEngine = function() {
+    //     console.log(`${this.brand} started`);           // создается на каждом новом экземпляре
+    // }
+
+    set setSpeed(speed) {
+        this.#validateAsNumber(speed);
+        this.#speed = speed;
+    }
+
+    get speed() {
+        return this.#speed;
+    }
+
+    static compareCarSpeed(car1, car2) {
+        if (car1.speed > car2.speed) {
+            console.log(`${car1.brand} is faster`)
+        }
+        if (car2.speed > car2.speed) {
+            console.log(`${car2.brand} is faster`)
+        }
+    }
+
+}
+
+class SuperCar extends Car {
+    constructor(brand, color, isFly) {
+        super(brand, color);
+        this.isFly = isFly;
+    }
+}
+
+const superBmw = new SuperCar('bmw', 'red', true)
+
+console.log(superBmw.speed)
+superBmw.startEngine()
 
